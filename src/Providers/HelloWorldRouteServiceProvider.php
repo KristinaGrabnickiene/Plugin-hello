@@ -2,6 +2,7 @@
 namespace HelloWorld\Providers;
 
 use Plenty\Plugin\RouteServiceProvider;
+use Plenty\Plugin\Routing\ApiRouter;
 use Plenty\Plugin\Routing\Router;
 
 /**
@@ -13,9 +14,17 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
 	/**
 	 * @param Router $router
 	 */
-	public function map(Router $router)
-	{
-		$router->get('hello', 'HelloWorld\Controllers\ContentController@sayHello');
-	}
+	public function map(Router $router,ApiRouter $apiRouter)
+    {
+        $apiRouter->version(['v1'], ['namespace' => 'TestPlugin\Controllers', 'middleware' => 'oauth'],
+            function($apiRouter)
+            {
+                //Basic settings
+                $apiRouter->get('TestPlugin/load', 'ContentController@load');
+            });
+            // $router->get('ShippingStates/deleteAll', 'ShippingStates\Controllers\SettingsController@deleteAll');
+
+
+    }
 
 }
