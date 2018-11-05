@@ -16,7 +16,7 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
 	 */
 	public function map(Router $router,ApiRouter $apiRouter)
     {
-        $apiRouter->version(['v1'], ['namespace' => 'TestPlugin\Controllers', 'middleware' => 'oauth'],
+        $apiRouter->version(['v1'], ['namespace' => 'HelloWorld\Controllers', 'middleware' => 'oauth'],
             function($apiRouter)
             {
                 //Basic settings
