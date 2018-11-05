@@ -3,6 +3,8 @@ namespace HelloWorld\Controllers;
 
 use Plenty\Plugin\Controller;
 use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
+use Plenty\Modules\Order\Shipping\Countries\Contracts\OrderRepositoryContract;
+
 
 /**
  * Class ContentController
@@ -17,7 +19,8 @@ class ContentController extends Controller
 	public function load(OrderRepositoryContract $orderRepo)
 	{
 		$orders = $orderRepo->searchOrders();
+		$country = $orderRepo->getActiveCountriesList():Collection;
 
-		return json_encode($orders);
+		return json_encode($orders, $country);
 	}
 }
