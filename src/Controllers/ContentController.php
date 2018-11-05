@@ -19,7 +19,7 @@ class ContentController extends Controller
 	public function load(OrderRepositoryContract $orderRepo)
 	{
 		$orders = $orderRepo->searchOrders();
-		$country = $orderRepo->getActiveCountriesList():Collection;
+		$country = $orderRepo->getActiveCountriesList();
 
 		return json_encode($orders, $country);
 	}
