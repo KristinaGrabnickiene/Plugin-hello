@@ -1,0 +1,13 @@
+{
+    "defaultEntryPoint": "index.html",
+    "namespace": "Plugin",
+    "menuEntries": [
+        {
+            "label": "Plugin",
+            "menu": "settings/orders/TestPlugin",
+            "urlKey": "plugin",
+            "entryPoint": "index.html?action=stats-view"
+        }
+    ]
+ }
+ 
