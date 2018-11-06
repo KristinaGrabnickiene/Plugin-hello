@@ -19,13 +19,13 @@ class ContentController extends Controller
 	 */
 	public function load(OrderRepositoryContract $orderRepo)
 	{
-		$orders = $orderRepo->searchOrders());
+
+		$countryRepo = pluginApp(CountryRepositoryContract::class);
+		$orders = $orderRepo->searchOrders();
 		$countries = $countryRepo->getCountriesList(0, ['states', 'names']);
 	
 
-		foreach($orders as $order){
-			$id = $order->id;
-		}
+		
 
 		// return json_encode([
 		// 	$orders, 
