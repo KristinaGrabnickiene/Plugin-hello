@@ -3,6 +3,7 @@ namespace HelloWorld\Controllers;
 
 use Plenty\Plugin\Controller;
 use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
+use Plenty\Modules\Order\Shipping\Countries\Contracts\CountryRepositoryContract;
 
 
 /**
@@ -11,21 +12,34 @@ use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
  */
 class ContentController extends Controller
 {
+
 	/**
 	 * @param Twig $twig
 	 * @return string
 	 */
 	public function load(OrderRepositoryContract $orderRepo)
 	{
-		$orders = $orderRepo->searchOrders();
-		
-
-		foreach($orders as $order){
-		$id = $order['id'];
-		}
-		
+		$orders = $orderRepo->searchOrders());
+		$countries = $countryRepo->getCountriesList(0, ['states', 'names']);
 	
 
-		return json_encode($orders);
+		foreach($orders as $order){
+			$id = $order->id;
+		}
+
+		// return json_encode([
+		// 	$orders, 
+		// 	$countries
+		// ]);
+
+		return json_encode([
+			'orders' => $orders, 
+			'countries'=> $countries
+		]);
 	}
+
+	// public function modelToArray($value)
+	// {
+	// 	return json_decode(json_encode($value));
+	// }
 }
